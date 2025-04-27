@@ -23,6 +23,15 @@ mongoose.connect(url.dbUrl).then((res)=>{
   console.log(`Database connection fail ${err}`)
 });
 
+import { bookRoute } from "./module/book/bookApi";
+
+// books routes 
+app.use(`/api/books`,bookRoute);
+
+
+
+app.use
+
 
 
 
