@@ -1,0 +1,42 @@
+[
+    {
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "author": "Douglas Adams",
+      "description": "Arthur Dent's unlucky day gets worse when his house is demolished, the planet Earth is destroyed, and he is whisked through space.",
+      "genre": "Science Fiction",
+      "publicationYear": 1979,
+      "isbn": "978-0345391803",
+      "price": 8.99,
+      "isAvailable": true
+    },
+    {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "description": "A novel of manners, following the emotional development of Elizabeth Bennet, who learns the repercussions of hasty judgments.",
+      "genre": "Romance",
+      "publicationYear": 1813,
+      "isbn": "978-0141439518",
+      "price": 7.50,
+      "isAvailable": true
+    },
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "description": "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.",
+      "genre": "Dystopian",
+      "publicationYear": 1949,
+      "isbn": "978-0451524935",
+      "price": 9.50,
+      "isAvailable": false
+    },
+    {
+      "title": "The Secret History",
+      "author": "Donna Tartt",
+      "description": "A group of classics students at a New England college fall into a world of morally dubious choices.",
+      "genre": "Dark Academia",
+      "publicationYear": 1992,
+      "isbn": "978-0679774916",
+      "price": 12.00,
+      "isAvailable": true
+    }
+  ]
