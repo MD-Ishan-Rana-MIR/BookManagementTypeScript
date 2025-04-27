@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { findAllBook } from "./bookController";
+import { findAllBook, uploadBook } from "./bookController";
 
 
 
 const router =  Router();
 
 
-router.get(`/all-book`, findAllBook)
+router.get(`/all-book`, findAllBook);
+router.post(`/post-book`, uploadBook );
 
 
 

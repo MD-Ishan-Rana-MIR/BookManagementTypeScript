@@ -1,3 +1,4 @@
+import { IBook } from "./bookInterface";
 import bookModel from "./bookModel"
 
 
@@ -6,8 +7,13 @@ const findAllBookService = async()=>{
     return book;
 };
 
+const uploadBookService = async (data:IBook)=>{
+    let book = bookModel.create(data);
+    return book
+}
 
 
 export {
-    findAllBookService
+    findAllBookService,
+    uploadBookService
 }
