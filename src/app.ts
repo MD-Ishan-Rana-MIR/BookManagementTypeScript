@@ -25,12 +25,12 @@ mongoose.connect(url.dbUrl).then((res)=>{
 
 import { bookRoute } from "./module/book/bookApi";
 
+import { userRouter } from "./module/auth/userApi";
+
 // books routes 
 app.use(`/api/books`,bookRoute);
-
-
-
-app.use
+// user router 
+app.use(`/api/user`,userRouter);
 
 
 
