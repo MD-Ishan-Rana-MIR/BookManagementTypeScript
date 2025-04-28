@@ -9,4 +9,5 @@ export interface IBook extends Document {
     publicationYear : string;
     isbn : string;
     price : number;
+    emailVerify : boolean
 };

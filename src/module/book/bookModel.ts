@@ -33,6 +33,10 @@ const bookSchema = new Schema<IBook>({
         type: Number,
         required: true
     },
+    emailVerify: {
+        type: Boolean,
+        default: false
+    }
 }, { timestamps: true, versionKey: false });
 
 
