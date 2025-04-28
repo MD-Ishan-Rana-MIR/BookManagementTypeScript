@@ -7,10 +7,10 @@ export enum Role {
 
 
 export interface IUser extends Document {
-    userName : string;
-    email : string;
-    password : string;
-    role : Role;
-    createdAt : Date;
-    updatedAt : Date;
-}
+    userName: string;
+    email: string;
+    password: string;
+    role: Role;
+    createdAt: Date;
+    updatedAt: Date;
+};
