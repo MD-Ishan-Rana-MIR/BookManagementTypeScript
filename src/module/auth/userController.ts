@@ -1,5 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import { createUserService } from "./userService";
+import userModel from "./userModel";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
+import url from "../../config/config";
+
+
+
+
+
+
+
 
 export const createUser = async (
     req: Request,
@@ -26,5 +37,36 @@ export const createUser = async (
             });
         }
         next(err);
+    }
+};
+
+
+
+
+export const loginUser = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await userModel.findOne({ email: email });
+
+        if (!user || !user.password) {
+            return res.status(404).json({ message: "User not found or password missing" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+
+        const token = jwt.sign({ user }, url.jwtKey, { expiresIn: "24h" });
+
+        return res.status(200).json({
+            msg: `User login successfully`,
+            token: token
+        });
+
+    } catch (error) {
+        return res.status(500).json({ message: "Internal server error" });
     }
 };
