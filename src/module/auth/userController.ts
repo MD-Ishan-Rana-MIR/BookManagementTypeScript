@@ -70,3 +70,22 @@ export const loginUser = async (req: Request, res: Response) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
+
+
+export const userProfile = async (req: Request, res: Response) => {
+    const  id = req.user?._id
+
+    try {
+        const data = await userModel.findOne({_id:id});
+        return res.status(200).json({
+            status: "success",
+            msg: "User profile retrive successfully",
+            data: data
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "fail",
+            msg: "Something went wrong",
+        })
+    }
+}
