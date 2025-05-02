@@ -4,10 +4,13 @@ import userModel from "./userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 import url from "../../config/config";
+import { IUser } from "./userType";
 
 
 
-
+type customeError = {
+    message : string
+};
 
 
 
@@ -87,5 +90,29 @@ export const userProfile = async (req: Request, res: Response) => {
             status: "fail",
             msg: "Something went wrong",
         })
+    }
+};
+
+
+export const updateProfile = async (req:Request,res:Response)=>{
+    try {
+        const id = req.user._id;
+        const filter = {
+            _id : id
+        };
+        const reqBody:IUser = req.body;
+        console.log(reqBody)
+        const data = await userModel.findByIdAndUpdate(filter,reqBody,{upsert:true});
+        return res.status(200).json({
+            status : "success",
+            msg : `Profile update successfully`,
+            data : data
+        })
+    } catch (error) {
+        return res.status(500).json({
+            status: 'fail',
+            msg: (error as customeError).message
+        });
+    
     }
 }
