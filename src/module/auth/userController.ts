@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, response } from "express";
 import { createUserService } from "./userService";
 import userModel from "./userModel";
 import bcrypt from "bcrypt";
@@ -131,6 +131,22 @@ export const profileDelete = async (req: Request, res: Response) => {
             status: "success",
             msg: "User delete successfully",
             data: data
+        })
+    } catch (error) {
+        return res.status(500).json({
+            status: 'fail',
+            msg: (error as customeError).message
+        });
+    }
+};
+
+export const findAllUser = async (req: Request, res: Response) => {
+    try {
+        let data = await userModel.find({ role: "user" }).sort({ createdAt: -1 });
+        return res.status(200).json({
+            status : "success",
+            msg : "Find all user successfully",
+            data : data
         })
     } catch (error) {
         return res.status(500).json({

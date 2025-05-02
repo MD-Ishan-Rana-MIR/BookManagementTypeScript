@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { findAllBookService, uploadBookService } from "./bookService";
+import bookModel from "./bookModel";
 
 
 
@@ -40,7 +41,7 @@ const findAllBook = async (req: Request, res: Response): Promise<Response> => {
 };
 
 
-const findSingleBook = async (req:Request,res:Response):Promise<Response>=>{
+const findSingleBook = async (req:Request,res:Response)=>{
 
   try {
     
@@ -48,6 +49,27 @@ const findSingleBook = async (req:Request,res:Response):Promise<Response>=>{
     
   }
 
+};
+
+export const deleteBook = async (req:Request,res:Response)=>{
+  try {
+    let id = req.params.id;
+    const filter = {
+      _id : id
+    };
+    const data = await bookModel.findByIdAndDelete(filter);
+    return res.status(200).json({
+      status : "success",
+      msg : "Book delete successfully",
+      data : data
+    })
+  } catch (error) {
+    return res.status(500).json({
+      status: "fail",
+      msg: "Something went wrong",
+      error: error
+    })
+  }
 }
 
 

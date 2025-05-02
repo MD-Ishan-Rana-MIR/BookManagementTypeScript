@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { findAllBook, uploadBook } from "./bookController";
+import { deleteBook, findAllBook, uploadBook } from "./bookController";
+import { isAdmin, isLogin } from "../../middlewares/authMiddleware";
 
 
 
 const router =  Router();
 
 
+router.post(`/uploadBook`,isLogin,isAdmin, uploadBook );
 router.get(`/all-book`, findAllBook);
-router.post(`/post-book`, uploadBook );
+router.delete(`/deleteBook/:id`,isLogin,isAdmin ,deleteBook);
 
 
 
