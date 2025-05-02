@@ -28,7 +28,7 @@ import { bookRoute } from "./module/book/bookApi";
 import { userRouter } from "./module/auth/userApi";
 
 // books routes 
-app.use(`/api/books`,bookRoute);
+app.use(`/api/book`,bookRoute);
 // user router 
 app.use(`/api/user`,userRouter);
 
