@@ -9,7 +9,7 @@ import { IUser } from "./userType";
 
 
 type customeError = {
-    message : string
+    message: string
 };
 
 
@@ -76,10 +76,10 @@ export const loginUser = async (req: Request, res: Response) => {
 
 
 export const userProfile = async (req: Request, res: Response) => {
-    const  id = req.user?._id
+    const id = req.user?._id
 
     try {
-        const data = await userModel.findOne({_id:id});
+        const data = await userModel.findOne({ _id: id });
         return res.status(200).json({
             status: "success",
             msg: "User profile retrive successfully",
@@ -94,25 +94,48 @@ export const userProfile = async (req: Request, res: Response) => {
 };
 
 
-export const updateProfile = async (req:Request,res:Response)=>{
+export const updateProfile = async (req: Request, res: Response) => {
     try {
         const id = req.user._id;
         const filter = {
-            _id : id
+            _id: id
         };
-        const reqBody:IUser = req.body;
+        const reqBody: IUser = req.body;
         console.log(reqBody)
-        const data = await userModel.findByIdAndUpdate(filter,reqBody,{upsert:true});
+        const data = await userModel.findByIdAndUpdate(filter, reqBody, { upsert: true });
         return res.status(200).json({
-            status : "success",
-            msg : `Profile update successfully`,
-            data : data
+            status: "success",
+            msg: `Profile update successfully`,
+            data: data
         })
     } catch (error) {
         return res.status(500).json({
             status: 'fail',
             msg: (error as customeError).message
         });
-    
+
+    }
+};
+
+
+export const profileDelete = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        // let id: string = req.user._id;
+        // const role: string = req.user.role;
+        const filter = {
+            _id: id,
+        };
+        const data = await userModel.findByIdAndDelete(filter);
+        return res.status(200).json({
+            status: "success",
+            msg: "User delete successfully",
+            data: data
+        })
+    } catch (error) {
+        return res.status(500).json({
+            status: 'fail',
+            msg: (error as customeError).message
+        });
     }
 }
